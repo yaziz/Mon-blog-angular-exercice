@@ -1,4 +1,7 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {Post} from '../models/post.model';
+import {PostService} from '../services/post.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-post-list-item',
@@ -7,24 +10,33 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class PostListItemComponent implements OnInit {
 
-  @Input() postTitle: string; // Propriété personnalisée
-  @Input() postContent: string;
-  @Input() postLoveIts: number;
-  @Input() postCreatedAt: Date;
+  @Input() post: Post;
 
-  constructor() { }
+  constructor(private postService: PostService, private router: Router) { }
 
   ngOnInit() {
   }
 
   onLoveIt() {
-    this.postLoveIts ++;
-    console.log(this.postLoveIts);
+    this.post.loveIts ++;
+    console.log(this.post.loveIts);
+    this.postService.savePosts();
+    this.postService.emitPosts();
   }
 
   onDontLoveIt() {
-    this.postLoveIts --;
-    console.log(this.postLoveIts);
+    this.post.loveIts --;
+    console.log(this.post.loveIts);
+    this.postService.savePosts();
+    this.postService.emitPosts();
+  }
+
+  onDeletePost(post: Post) {
+    if(confirm('Etes-vous sûr de vouloir supprimer ce post ?')) {
+      this.postService.removePost(post);
+    } else {
+      return null;
+    }
   }
 
 }

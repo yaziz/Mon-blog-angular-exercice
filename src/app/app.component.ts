@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-root',
@@ -6,28 +7,18 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'mon-blog-exercice';
 
+  constructor() {
+    const config = {
+      apiKey: 'AIzaSyBusaruO8AlrLfU9HjLczij2BtRUAte2NA',
+      authDomain: 'mon-blog-exercice.firebaseapp.com',
+      databaseURL: 'https://mon-blog-exercice.firebaseio.com',
+      projectId: 'mon-blog-exercice',
+      storageBucket: '',
+      messagingSenderId: '846349113402'
+    };
+    firebase.initializeApp(config);
+  }
 
-  posts = [
-    {
-      title: 'Mon premier post',
-      content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis',
-      loveIts: 0,
-      created_at: new Date()
-    },
-    {
-      title: 'Mon deuxième post',
-      content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis',
-      loveIts: 0,
-      created_at: new Date()
-    },
-    {
-      title: 'Encore un post',
-      content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea',
-      loveIts: 0,
-      created_at: new Date()
-    }
-  ];
 
 }
