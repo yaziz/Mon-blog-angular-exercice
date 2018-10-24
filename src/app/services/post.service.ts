@@ -52,4 +52,17 @@ export class PostService {
     this.emitPosts();
   }
 
+  increaseLoveIts(post: Post) {
+    post.loveIts ++;
+    this.savePosts();
+    this.emitPosts();
+  }
+
+  decreaseLoveIts(post: Post) {
+    post.loveIts --;
+    this.savePosts();
+    this.emitPosts();
+  }
+
+
 }

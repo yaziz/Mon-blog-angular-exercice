@@ -18,17 +18,13 @@ export class PostListItemComponent implements OnInit {
   }
 
   onLoveIt() {
-    this.post.loveIts ++;
+    this.postService.increaseLoveIts(this.post);
     console.log(this.post.loveIts);
-    this.postService.savePosts();
-    this.postService.emitPosts();
   }
 
   onDontLoveIt() {
-    this.post.loveIts --;
+    this.postService.decreaseLoveIts(this.post);
     console.log(this.post.loveIts);
-    this.postService.savePosts();
-    this.postService.emitPosts();
   }
 
   onDeletePost(post: Post) {
